@@ -8,6 +8,6 @@ namespace Server.Application.Services
 {
     public interface IPiService
     {
-        Rational Calculate(int precision, CancellationToken cancellationToken);
+        string Calculate(int precision, CancellationToken cancellationToken);
     }
 }

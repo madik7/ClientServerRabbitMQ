@@ -15,46 +15,31 @@ namespace Server.Application.Services
         private readonly BigInteger THREE = new BigInteger(3);
         private readonly BigInteger TWO = new BigInteger(2);
 
-        private BigInteger k = BigInteger.One;
-        private BigInteger l = new BigInteger(3);
-        private BigInteger n = new BigInteger(3);
-        private BigInteger q = BigInteger.One;
-        private BigInteger r = BigInteger.Zero;
-        private BigInteger t = BigInteger.One;
 
-        public Rational Calculate(int precision, CancellationToken cancellationToken)
+
+        public string Calculate(int precision, CancellationToken cancellationToken)
         {
-            /*
-            //Chudnovsky algorithm
-            var K = new Rational(6);
-            var M = new Rational(1);
-            var L = new Rational(13591409);
-            var X = new Rational(1);
-            var S = new Rational(13591409);
+            var k = BigInteger.One;
+            var l = new BigInteger(3);
+            var n = new BigInteger(3);
+            var q = BigInteger.One;
+            var r = BigInteger.Zero;
+            var t = BigInteger.One;
 
-            for (var k = 1; k <= precision; k++)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                M = M * (Rational.Pow(K, 3) - (16 * K)) / Rational.Pow(k, 3);
-                L += 545140134;
-                X *= -262537412640768000;
-                S += M * L / X;
-                K += 12;
-            }
-            */
-
-
+            var resultBuilder = new StringBuilder();
 
             BigInteger nn, nr;
             bool first = true;
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 if ((FOUR * q + r - t).CompareTo(n * t) == -1)
                 {
-                    Console.Write(n);
+                    resultBuilder.Append(n);
+                    if (--precision == 0)
+                        break;
                     if (first)
                     {
-                        Console.Write(".");
+                        resultBuilder.Append(".");
                         first = false;
                     }
                     nr = TEN * (r - (n * t));
@@ -75,7 +60,7 @@ namespace Server.Application.Services
                 }
             }
 
-            return new Rational(426880) * Rational.RationalRoot(new Rational(10005),2) / S;
+            return resultBuilder.ToString();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Server.Application.Services
         {
             try
             {
-                job.Result = $"3.{string.Join("",_service.Calculate(job.Precision, job.CancellationTokenSource.Token).Digits.Skip(1).Take(job.Precision).ToList())}";
+                job.Result = _service.Calculate(job.Precision, job.CancellationTokenSource.Token);
             }catch(Exception ex)
             {
 
