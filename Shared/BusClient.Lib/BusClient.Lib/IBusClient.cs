@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusClient.Lib
+﻿namespace BusClient.Lib
 {
     public interface IBusClient
     {

@@ -1,9 +1,6 @@
 ﻿using BusClient.Lib.Handlers;
 using Client.Domain.Messages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Client.Application.Handlers.Job
 {

@@ -1,11 +1,7 @@
-﻿using BusClient.Lib.Handlers;
-using BusClient.Lib.Options;
+﻿using BusClient.Lib.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusClient.Lib.Extensions
 {
