@@ -39,12 +39,21 @@ namespace Server
             services.AddBusClient(Configuration);
 
             services.AddHostedService<JobBackgroundService>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseHandler<JobCreatedMessage>();
             app.UseHandler<JobStoppedMessage>();
+
+            app.UseMvc();
         }
     }
 }

@@ -16,6 +16,11 @@ namespace Client.WebApi.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Create new job
+        /// </summary>
+        /// <param name="createJobDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateJobAsync(CreateJobDto createJobDto)
         {
@@ -23,6 +28,10 @@ namespace Client.WebApi.Controllers
             return Ok(id);
         }
 
+        /// <summary>
+        /// Delete all jobs
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteAllJobs()
         {
@@ -30,6 +39,11 @@ namespace Client.WebApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete job by id
+        /// </summary>
+        /// <param name="stopJobDto"></param>
+        /// <returns></returns>
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteJobById([FromRoute] StopJobDto stopJobDto)
         {

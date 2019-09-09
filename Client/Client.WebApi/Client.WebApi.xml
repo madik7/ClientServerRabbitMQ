@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Client.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Client.WebApi.Controllers.JobController.CreateJobAsync(Client.Application.Handlers.Job.CreateJobDto)">
+            <summary>
+            Create new job
+            </summary>
+            <param name="createJobDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Client.WebApi.Controllers.JobController.DeleteAllJobs">
+            <summary>
+            Delete all jobs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Client.WebApi.Controllers.JobController.DeleteJobById(Client.Application.Handlers.Job.StopJobDto)">
+            <summary>
+            Delete job by id
+            </summary>
+            <param name="stopJobDto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
