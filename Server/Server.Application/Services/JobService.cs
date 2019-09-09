@@ -24,13 +24,10 @@ namespace Server.Application.Services
 
         public void Complete(Job job)
         {
-            try
-            {
-                job.Result = _service.Calculate(job.Precision, job.CancellationTokenSource.Token);
-            }catch(Exception ex)
-            {
-
-            }
+            job.InProgress = true;
+            job.Result = _service.Calculate(job.Precision, job.CancellationTokenSource.Token);
+            if (job.CancellationTokenSource.Token.IsCancellationRequested)
+                job.Result = "-1";
             var jobCompletedMessage = _mapper.Map<JobCompletedMessage>(job);
             _client.Publish(jobCompletedMessage);
         }

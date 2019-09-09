@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Server.Domain;
 
 namespace Server.Application.Services
 {
     public class JobManager : IJobManager
     {
-        //private readonly ConcurrentDictionary<string,Job> _jobs = new ConcurrentDictionary<string,Job>();
         private readonly List<Job> _jobs = new List<Job>();
-        public JobManager()
+        private readonly IJobService _service;
+        public JobManager(IJobService service)
         {
-
+            _service = service;
         }
 
         public void AddJob(Job job)
@@ -27,7 +24,6 @@ namespace Server.Application.Services
             {
                 x.CancellationTokenSource.Cancel();
             });
-      //      _jobs.Clear();
         }
 
         public void CancelJob(string id)
@@ -36,7 +32,8 @@ namespace Server.Application.Services
             if (job != null)
             {
                 job.CancellationTokenSource.Cancel();
-          //      _jobs.Remove(job);
+                _service.Complete(job);
+                RemoveJob(job);
             }
         }
 
@@ -48,7 +45,6 @@ namespace Server.Application.Services
         public void RemoveJob(Job job)
         {
             _jobs.Remove(job);
-
         }
     }
 }

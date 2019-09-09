@@ -2,9 +2,6 @@
 using BusClient.Lib.Handlers;
 using Server.Application.Services;
 using Server.Domain.Messages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Server.Application.Handlers
 {
