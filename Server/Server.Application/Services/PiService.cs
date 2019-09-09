@@ -1,7 +1,4 @@
-﻿using Rationals;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Text;
 using System.Threading;
 
@@ -9,11 +6,11 @@ namespace Server.Application.Services
 {
     public class PiService : IPiService
     {
-        private readonly BigInteger FOUR = new BigInteger(4);
-        private readonly BigInteger SEVEN = new BigInteger(7);
-        private readonly BigInteger TEN = new BigInteger(10);
-        private readonly BigInteger THREE = new BigInteger(3);
-        private readonly BigInteger TWO = new BigInteger(2);
+        private readonly BigInteger _four = new BigInteger(4);
+        private readonly BigInteger _seven = new BigInteger(7);
+        private readonly BigInteger _ten = new BigInteger(10);
+        private readonly BigInteger _three = new BigInteger(3);
+        private readonly BigInteger _two = new BigInteger(2);
 
 
 
@@ -32,7 +29,7 @@ namespace Server.Application.Services
             bool first = true;
             while (!cancellationToken.IsCancellationRequested)
             {
-                if ((FOUR * q + r - t).CompareTo(n * t) == -1)
+                if ((_four * q + r - t).CompareTo(n * t) == -1)
                 {
                     resultBuilder.Append(n);
                     if (--precision == 0)
@@ -42,18 +39,18 @@ namespace Server.Application.Services
                         resultBuilder.Append(".");
                         first = false;
                     }
-                    nr = TEN * (r - (n * t));
-                    n = TEN * (THREE * q + r) / t - (TEN * n);
-                    q *= TEN;
+                    nr = _ten * (r - (n * t));
+                    n = _ten * (_three * q + r) / t - (_ten * n);
+                    q *= _ten;
                     r = nr;
                 }
                 else
                 {
-                    nr = (TWO * q + r) * l;
-                    nn = (q * (SEVEN * k) + TWO + r * l) / (t * l);
+                    nr = (_two * q + r) * l;
+                    nn = (q * (_seven * k) + _two + r * l) / (t * l);
                     q *= k;
                     t *= l;
-                    l += TWO;
+                    l += _two;
                     k += BigInteger.One;
                     n = nn;
                     r = nr;
